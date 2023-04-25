@@ -7,23 +7,23 @@
             <div class="card card-primary">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('experiences.update', $experience->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('contacts.update', $contact->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Experience Name</label>
-                            <input autocomplete="off" type="text" class="form-control" id="experience_name" name="experience_name"
-                                value="{{ $experience->experience_name }}" placeholder="Experience Name" required>
+                            <label for="name">Contact Name</label>
+                            <input autocomplete="off" type="text" class="form-control" id="contact_name" name="contact_name"
+                                value="{{ $contact->school_name }}" placeholder="Contact Name" required>
                         </div>
                         <div class="form-group">
                             <label for="name">Range Year</label>
                             <input autocomplete="off" class="form-control" id="range_year" name="range_year"
-                                value="{{ $experience->range_year }}" type="text" placeholder="Range Year" required>
+                                value="{{ $contact->range_year }}" type="text" placeholder="Range Year" required>
                         </div>
                         <div class="form-group">
                             <label for="name">Description</label>
                             <input autocomplete="off" class="form-control" id="description" name="description"
-                                value="{{ $experience->description }}" type="text" placeholder="Description" required>
+                                value="{{ $contact->description }}" type="text" placeholder="Description" required>
                         </div>
                     </div>
                     <div class="card-footer">

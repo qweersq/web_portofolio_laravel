@@ -7,27 +7,29 @@
             <div class="card card-primary">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('experiences.update', $experience->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('contacts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Experience Name</label>
-                            <input autocomplete="off" type="text" class="form-control" id="experience_name" name="experience_name"
-                                value="{{ $experience->experience_name }}" placeholder="Experience Name" required>
+                            <label for="name">Contact Name</label>
+                            <input autocomplete="off" class="form-control" id="contact_name" name="contact_name"
+                                placeholder="Contact Name" required>
                         </div>
                         <div class="form-group">
                             <label for="name">Range Year</label>
                             <input autocomplete="off" class="form-control" id="range_year" name="range_year"
-                                value="{{ $experience->range_year }}" type="text" placeholder="Range Year" required>
+                                placeholder="2019-2020" required>
                         </div>
                         <div class="form-group">
                             <label for="name">Description</label>
                             <input autocomplete="off" class="form-control" id="description" name="description"
-                                value="{{ $experience->description }}" type="text" placeholder="Description" required>
+                                placeholder="Description" required>
                         </div>
                     </div>
+                    <!-- /.card-body -->
+
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Perbaharui</button>
+                        <button type="submit" class="btn btn-success">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -35,6 +37,6 @@
     </section>
 
     <script type="text/javascript">
-        document.getElementById("changejudul").innerHTML = "Edit POS";
+        document.getElementById("changejudul").innerHTML = "Tambah Contact";
     </script>
 @endsection

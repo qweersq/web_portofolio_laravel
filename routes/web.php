@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SkillController;
@@ -7,6 +8,9 @@ use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,27 +24,15 @@ use App\Http\Controllers\ExperienceController;
 */
 // Route untuk domain utama
 Route::domain('localhost')->group(function () {
-    Route::get('/', [PortofolioController::class, 'index'])->name('index');
+    Route::get('/', [ClientController::class, 'index'])->name('index');
+    Route::post('/contact/store', [ClientController::class, 'store'])->name('contacts.store');
 
-    Route::get('/skill', [SkillController::class, 'index'])->name('skills.index');
-
-    Route::get('/resume', function () {
-        return view('resume');
-    })->name('resume');
-
-    Route::get('/portofolio', function () {
-        return view('portofolio');
-    })->name('portofolio');
 });
 
 // Route untuk subdomain
 Route::domain('admin.localhost')->group(function () {
 
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin.login');
-
-    Route::post('/', [LoginController::class, 'login'])->name('login.post');
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
     Route::get('/skill', [SkillController::class, 'index'])->name('skills.index');
     Route::get('/skill/create', [SkillController::class, 'create'])->name('skills.create');
@@ -69,6 +61,16 @@ Route::domain('admin.localhost')->group(function () {
     Route::get('/experience/edit/{id}', [ExperienceController::class, 'edit'])->name('experiences.edit');
     Route::post('/experience/update/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
     Route::post('/experience/destroy/{id}', [ExperienceController::class, 'destroy'])->name('experiences.destroy');
+    
+    Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolios.index');
+    Route::get('/portofolio/create', [PortofolioController::class, 'create'])->name('portofolios.create');
+    Route::post('/portofolio/store', [PortofolioController::class, 'store'])->name('portofolios.store');
+    Route::get('/portofolio/edit/{id}', [PortofolioController::class, 'edit'])->name('portofolios.edit');
+    Route::post('/portofolio/update/{id}', [PortofolioController::class, 'update'])->name('portofolios.update');
+    Route::post('/portofolio/destroy/{id}', [PortofolioController::class, 'destroy'])->name('portofolios.destroy');
+    
+    Route::get('/contact', [ContactController::class, 'index'])->name('contacts.index');
+
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard');

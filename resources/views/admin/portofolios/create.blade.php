@@ -7,13 +7,13 @@
             <div class="card card-primary">
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('certificates.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('portofolios.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">Certificate Name</label>
-                            <input autocomplete="off" class="form-control" id="certificate_name" name="certificate_name"
-                                placeholder="Certificate Name" required>
+                            <label for="name">Portofolio Name</label>
+                            <input autocomplete="off" class="form-control" id="portofolio_name" name="portofolio_name"
+                                placeholder="Portofolio Name" required>
                         </div>
                         <div class="form-group">
                             <label for="name">Description</label>
@@ -21,23 +21,17 @@
                                 placeholder="Description" required>
                         </div>
                         <div class="form-group">
-                            <label for="name">Year</label>
-                            <input autocomplete="off" class="form-control" id="year" name="year"
-                                placeholder="2020" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="files">Photo</label>
+                            <label for="files">Upload Portofolio</label>
                             <div class="input-group">
-                                <input style="height: 45px;" id="photo" name="photo" type="file" class="form-control">
+                                <input style="height: 45px;" id="photo" name="photo" type="file" class="form-control-file">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="name">Certificate Url</label>
-                            <input autocomplete="off" class="form-control" id="certificate_url" name="certificate_url"
+                            <label for="name">Url Apps</label>
+                            <input autocomplete="off" class="form-control" id="url_apps" name="url_apps"
                                 placeholder="http://" required>
                         </div>
                     </div>
-                    
                     <!-- /.card-body -->
 
                     <div class="card-footer">
@@ -49,6 +43,6 @@
     </section>
 
     <script type="text/javascript">
-        document.getElementById("changejudul").innerHTML = "Tambah Certificate";
+        document.getElementById("changejudul").innerHTML = "Tambah Portofolio";
     </script>
 @endsection

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('portofolio_name');
             $table->string('description');
+            $table->string('file_name');
             $table->string('photo_url');
             $table->string('url_apps');
             $table->timestamps();

@@ -19,8 +19,9 @@
                                         <th>ID</th>
                                         <th>Certificate Name</th>
                                         <th>Description</th>
-                                        <th>Created at</th>
+                                        <th>Year</th>
                                         <th>Photo</th>
+                                        <th>Url Certificate</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -31,10 +32,11 @@
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->certificate_name }}</td>
                                             <td>{{ $item->description }}</td>
-                                            <td>{{ $item->created_at }}</td>
-                                            <td><a href="{{ route('certificates.edit', $item->id) }}" class="btn btn-info">
-                                                <i class="fa fa-photo"></i>
-                                            </a></td>
+                                            <td>{{ $item->year }}</td>
+                                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#photoModal" data-photo="{{ asset($item->photo_url) }}">
+                                                View
+                                            </button></td>
+                                            <td>{{ $item->certificate_url }}</td>
                                             <td><a href="{{ route('certificates.edit', $item->id) }}" class="btn btn-info">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
@@ -51,6 +53,23 @@
                                         
                                 </tbody>
                             </table>
+                             <!-- Modal -->
+                             <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                             <div class="modal-dialog modal-dialog-centered">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLabel">Photo</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                         </button>
+                                     </div>
+                                     <div class="modal-body">
+                                         <img id="photo" src="" alt="" style="max-width: 100%;">
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -72,4 +91,12 @@
 
         document.getElementById('TopTitle').innerHTML = '<a href="/certificate" id="TopTitle" class="nav-link">Certificate</a>';
     </script>
+        <script>
+            $('#photoModal').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget)
+              var photoUrl = button.data('photo')
+              var modal = $(this)
+              modal.find('.modal-body #photo').attr('src', photoUrl)
+            })
+          </script>
 @endsection

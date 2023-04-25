@@ -271,55 +271,77 @@
                     <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-web">Web</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
+                    @foreach ($portofolios as $portofolio)
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
-                            <img src="{{ asset('assets/img/portfolio/artitrasi.png') }}" class="img-fluid"
+                            <img src="{{ asset($portofolio->photo_url) }}" class="img-fluid"
                                 alt="">
                             <div class="portfolio-info">
-                                <h4>Augmented Reality Titration Apps</h4>
-                                <p>I hope that application is useful for student while study titration course</p>
+                                <h4>{{ $portofolio->portofolio_name }}</h4>
+                                <p>{{ $portofolio->description }}</p>
                                 <div class="portfolio-links">
-                                    <a href="{{ asset('assets/img/portfolio/artitrasi.png') }}"
+                                    <a href="{{ asset($portofolio->photo_url) }}"
                                         data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i
                                             class="bx bx-plus"></i></a>
-                                    <a href="https://qweersq.github.io/ArTitrationApps/"
-                                        class="portfolio-details-lightbox" data-glightbox="type: external"
-                                        title="Portfolio Details"><i class="bx bx-link"></i></a>
+                                    <a href="http://{{ $portofolio->url_apps }}" target="_blank"><i class="bx bx-link"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/aquaponic.png" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Aquaponic Website</h4>
-                                <p>Monitoring, visualizing, and summarizing data from existing censor pool</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/aquaponic.png" data-gallery="portfolioGallery"
-                                        class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                                    <a href="https://aquaponic.sinamlab.com" class="portfolio-details-lightbox"
-                                        data-glightbox="type: external" title="Portfolio Details"><i
-                                            class="bx bx-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    @endforeach
                 </div>
 
             </div>
         </section><!-- End Portfolio Section -->
+
+        <!-- ======= Certificate Section ======= -->
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Certificate</h2>
+                    <p>Below is the Certificate that I have until right now. I always update my new certificate here, so
+                        you can see it below.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                        <ul id="portfolio-flters">
+                            <li data-filter="*" class="filter-active">All</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                    @foreach ($certificates as $certificate)
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img src="{{ asset($certificate->photo_url) }}" class="img-fluid"
+                                alt="">
+                            <div class="portfolio-info">
+                                <h4>{{ $certificate->certificate_name }}</h4>
+                                <p>{{ $certificate->description }}</p>
+                                <div class="portfolio-links">
+                                    <a href="{{ asset($certificate->photo_url) }}"
+                                        data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i
+                                            class="bx bx-plus"></i></a>
+                                            <a href="http://{{ $certificate->certificate_url }}" target="_blank"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </section><!-- End Certificate Section -->
 
 
         <!-- ======= Contact Section ======= -->
@@ -358,7 +380,8 @@
 
                     <div class="col-lg-8 mt-5 mt-lg-0">
 
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <form action="{{ route('contacts.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
@@ -377,11 +400,10 @@
                                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                             </div>
                             <div class="my-3">
-                                <div class="loading">Loading</div>
                                 <div class="error-message"></div>
                                 <div class="sent-message">Your message has been sent. Thank you!</div>
                             </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
+                            <div class="text-center"><button class="btn btn-primary" type="submit">Send Message</button></div>
                         </form>
 
                     </div>

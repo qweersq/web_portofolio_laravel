@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Certificate;
+use Illuminate\Support\Facades\Storage;
+
 
 class CertificateController extends Controller
 {
@@ -27,13 +29,20 @@ class CertificateController extends Controller
         //     'description' => 'required'
         // ]);
 
-        $certificate = new Certificate;
-        $certificate->school_name = $request->input('school_name');
-        $certificate->range_year = $request->input('range_year');
+        $uploadedPhoto = $request->file('photo')->store('public/certificates_photos');
+        $photoUrl = Storage::url($uploadedPhoto);
+        $fileName = basename($uploadedPhoto);
+
+        $certificate = new Certificate();
+        $certificate->certificate_name = $request->input('certificate_name');
         $certificate->description = $request->input('description');
+        $certificate->year = $request->input('year');
+        $certificate->photo_url = $photoUrl;
+        $certificate->file_name = $fileName;
+        $certificate->certificate_url = $request->input('certificate_url');
         $certificate->save();
 
-        return redirect()->route('certificates.index')->with('success', 'Certificate has been added.');
+        return redirect(route('certificates.index'));
     }
 
     public function edit($id)
@@ -52,9 +61,20 @@ class CertificateController extends Controller
         // ]);
 
         $certificate = Certificate::find($id);
-        $certificate->school_name = $request->input('school_name');
-        $certificate->range_year = $request->input('range_year');
+        if ($request->hasFile('photo')) {
+            $uploadedPhoto = $request->file('photo')->store('public/certificates_photos');
+            $photoUrl = Storage::url($uploadedPhoto);
+            $fileName = basename($uploadedPhoto);
+        } else {
+            $photoUrl = $certificate->photo_url;
+            $fileName = $certificate->file_name;
+        }
+        $certificate->certificate_name = $request->input('certificate_name');
         $certificate->description = $request->input('description');
+        $certificate->year = $request->input('year');
+        $certificate->photo_url = $photoUrl;
+        $certificate->file_name = $fileName;
+        $certificate->certificate_url = $request->input('certificate_url');
         $certificate->save();
 
         return redirect()->route('certificates.index')->with('success', 'Certificate has been updated.');

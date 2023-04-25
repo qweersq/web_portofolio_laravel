@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('certificate_name');
             $table->string('description');
             $table->string('year');
+            $table->string('file_name');
             $table->string('photo_url');
+            $table->string('certificate_url');
             $table->timestamps();
         });
     }

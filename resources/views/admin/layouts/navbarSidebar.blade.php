@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/sidebar.css') }}">
 
-    <link rel="icon" href="{{ asset('assets/img/hadadicon.png')}}">
+    <link rel="icon" href="{{ asset('assets/img/hadadicon.png') }}">
 
 
 
@@ -69,7 +69,7 @@
         <aside class="main-sidebar sidebar-style">
             <!-- Brand Logo -->
             <div class="brand-link" style="display: flex;">
-                <img src="{{ asset('assets/img/hadadicon.png')}}" alt="Hadad Logo"
+                <img src="{{ asset('assets/img/hadadicon.png') }}" alt="Hadad Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <a href="/" style="color:white; text-decoration:none;margin-left:10px; ">Admin Portofolio</a>
             </div>
@@ -98,14 +98,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/certificate" class="nav-link">
-                                <i class="nav-icon fas fa-certificate"></i>
-                                <p>
-                                    Certificate
-                                </p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="/education" class="nav-link">
                                 <i class="nav-icon fas fa-school"></i>
@@ -122,11 +115,20 @@
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="/portofolio" class="nav-link">
                                 <i class="nav-icon fas fa-square-poll-horizontal"></i>
                                 <p>
                                     Portofolio
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/certificate" class="nav-link">
+                                <i class="nav-icon fas fa-certificate"></i>
+                                <p>
+                                    Certificate
                                 </p>
                             </a>
                         </li>
@@ -144,8 +146,7 @@
                         <div class="nav-item nav-link navlink2" style="display:flex;" style="color: white">
 
                             <i class="far fa-user" style=" color: white; margin-left: 20px "></i>
-                            <a href="{{ route('index') }}"
-                                style="color: white; margin-left:10px;">asdfasdf</a>
+                            <a href="{{ route('index') }}" style="color: white; margin-left:10px;">asdfasdf</a>
 
                             <a href="http://localhost:8000"
                                 onclick="event.preventDefault();
